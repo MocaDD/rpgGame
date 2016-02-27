@@ -14,9 +14,9 @@ public class Items {
     private String type;
 
     public Items(double damage, double defense, String type) {
+        this.type = type;
         this.damage = damage;
         this.defense = defense;
-        this.type = type;
     }
 
     public static Items createItem(String type)  {

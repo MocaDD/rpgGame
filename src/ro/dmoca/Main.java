@@ -1,17 +1,19 @@
 package ro.dmoca;
 
-import ro.dmoca.FileWork.Flux;
+import ro.dmoca.*;
+//import ro.dmoca.Gui.LoadHero;
+import ro.dmoca.Gui.LoadHero;
+import ro.dmoca.Gui.Menu;
 import ro.dmoca.Hero.Hero;
-import ro.dmoca.Hero.Types.Trojan;
 
-/**
- * Created by MocaDD on 2/25/2016.
- */
-public class Main {
-    private static Hero myHero = new Trojan("Arlekino");
+public class Main   {
+    private Hero newHero = Hero.createHero("Trojan", "Arlekino");
     public static void main(String[] args) {
-        myHero.choseMission(1);
-        Flux flux = new Flux();
-        flux.readAndWrite("ana", "are");
+        Menu s = new Menu();
+        s.setVisible(true);
+        LoadHero hero = new LoadHero();
+        hero.getdata = "ana";
+        hero.postData();
     }
+
 }

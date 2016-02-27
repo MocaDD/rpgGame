@@ -1,43 +1,52 @@
 package ro.dmoca.FileWork;
 
 import java.io.*;
+import java.lang.reflect.Array;
+import java.nio.file.Path;
+import java.util.ArrayList;
+
 /**
  * Created by MocaDD on 2/25/2016.
  */
 public class Flux {
 
-    public static void readAndWrite(String readFile, String writeFile)  {
-        FileInputStream in;
-        FileOutputStream out;
+    private String fileName = "hero.txt";
+    private String string = new String();
+    private int index = 0;
+    public void readFile() {
 
-        int ok;
+        String line = null;
+
         try {
-            in = new FileInputStream("heroes.txt");
-            try {
-                out = new FileOutputStream("monsters.txt");
-                ok = 0;
-
-                while (ok != -1)    {
-                    try {
-                        ok = in.read();
-                        out.write(ok);
-
-                        System.out.println((char)ok);
-                    }
-                    catch (IOException e)   {
-                        System.out.println(e.getMessage());
-                        System.exit(1);
-                    }
-                }
+            FileReader fileReader = new FileReader(fileName);
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+            while ((line = bufferedReader.readLine()) != null)  {
+                this.string = line;
             }
-            catch (IOException e)   {
-                System.out.println(e.getMessage());
-                System.exit(1);
-            }
+            bufferedReader.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to open file" + fileName);
+        } catch (IOException ex)    {
+            ex.printStackTrace();
         }
-        catch (FileNotFoundException e) {
-            System.out.println(e.getMessage());
-            System.exit(1);
+    }
+
+    public void writeFile(String writeString) {
+
+        try {
+            FileWriter fileWriter = new FileWriter(fileName);
+
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+
+            bufferedWriter.write(writeString);
+            bufferedWriter.newLine();
+            bufferedWriter.close();
+        } catch (IOException ex)    {
+            ex.printStackTrace();
         }
+    }
+
+    public String getString() {
+        return string;
     }
 }
